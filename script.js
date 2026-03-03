@@ -41,6 +41,13 @@ const word = (levelNo)=>{
           `
         }
     for(let word of words){
+        if(word.meaning === null || word.meaning === undefined){
+            word.meaning = 'কোন অর্থ পাওয়া যায়নি'
+        }
+        if(word.pronunciation === null || word.pronunciation === undefined){
+            word.pronunciation = 'কোন উচ্চারণ পাওয়া যায়নি'
+        }
+        
     const div = document.createElement('div')
     div.innerHTML = `
     <div class="words bg-white  m-4 rounded-xl py-14">
