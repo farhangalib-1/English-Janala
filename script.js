@@ -72,8 +72,8 @@ const word = (levelNo)=>{
             <p class="font-medium text-2xl hind-siliguri-medium">"${word.meaning} / ${word.pronunciation}"</p>
             </div>
             <div class="btns flex justify-between px-8 mt-6">
-              <button class="btn" onclick="showModal(${word.id})"><i class="fa-solid fa-circle-info"></i></button>
-              <button class="btn" onclick="pronounceWord(${word.id})"><i class="fa-solid fa-volume-high"></i></button>
+              <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]" onclick="showModal(${word.id})"><i class="fa-solid fa-circle-info"></i></button>
+              <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]" onclick="pronounceWord(${word.id})"><i class="fa-solid fa-volume-high"></i></button>
             </div>
           </div>
     `
