@@ -14,9 +14,6 @@ const displaylevel = (lessons)=>{
         allLessons.appendChild(btn)
     }
     };
-
-
-
 const word = (levelNo)=>{
     const url = `https://openapi.programming-hero.com/api/level/${levelNo}`
     fetch(url)
@@ -26,15 +23,23 @@ const word = (levelNo)=>{
         for(let btn of allBtn){  
             btn.classList.remove('active')
         }
-        
         const clickedBtn = document.getElementById(`btn-${levelNo}`)
         clickedBtn.classList.add('active')
-        
-        displayWord(data.data)
+        displayWord(data.data) 
     })
     const displayWord=(words)=>{
         const displayWords = document.getElementById('lesson-display')
         displayWords.innerHTML = ''
+         if(words.length === 0){
+            displayWords.innerHTML = `
+            <div class="default-text col-span-full text-center py-16">
+            <div class="alertImage flex justify-center"><img src="images/alert-error.png" alt=""></div>
+
+        <p class="text-[13px] hind-siliguri-medium text-[#79716B]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+          <h2 class="text-[35px] hind-siliguri-medium">নেক্সট Lesson এ যান</h2>
+          </div>
+          `
+        }
     for(let word of words){
     const div = document.createElement('div')
     div.innerHTML = `
@@ -55,15 +60,6 @@ const word = (levelNo)=>{
 
 }
 }
-
-/*
- 
-{id: 5,
-level: 1,
-word: 'Eager', 
-meaning: 'আগ্রহী', 
-: 'ইগার'}
-*/
 
 loadLevel();
 
