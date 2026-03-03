@@ -57,7 +57,7 @@ const word = (levelNo)=>{
             <p class="font-medium text-2xl hind-siliguri-medium">"${word.meaning} / ${word.pronunciation}"</p>
             </div>
             <div class="btns flex justify-between px-8 mt-6">
-              <button class="btn"><i class="fa-solid fa-circle-info"></i></button>
+              <button class="btn" onclick="showModal(${word.id})"><i class="fa-solid fa-circle-info"></i></button>
               <button class="btn"><i class="fa-solid fa-volume-high"></i></button>
             </div>
           </div>
@@ -67,7 +67,20 @@ const word = (levelNo)=>{
 
 }
 }
-
+  const showModal = (id)=>{
+    const url = `https://openapi.programming-hero.com/api/word/${id}`
+    fetch(url)
+    .then(res=>res.json())
+    .then(infos=>console.log(infos.data)
+    )
+    
+    const displayDetails = document.getElementById('displaydetails')
+    const showModal = document.getElementById('my_modal_1')
+    // displayDetails.innerHTML = 
+    
+    showModal.showModal();
+  
+}
 loadLevel();
 
 
