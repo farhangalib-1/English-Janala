@@ -1,3 +1,18 @@
+const syn = (arr)=>{
+    const sysnonyms = arr.map(el=>`<a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">${el}</a>`)
+    if(sysnonyms.length === 0){
+        return `<p class="hind-siliguri-medium text-[19px] mb-2.5">কোন সমার্থক শব্দ পাওয়া যায়নি</p>`
+    }
+    else{
+    return sysnonyms.join(" ")
+     }
+}
+const meaning = (el)=>{
+    if(el === null || el === undefined){
+        return 'কোন অর্থ পাওয়া যায়নি'
+    }
+    return el
+}
 const loadLevel = ()=>{
     fetch('https://openapi.programming-hero.com/api/levels/all')
     .then(req=>req.json())
@@ -80,13 +95,11 @@ const word = (levelNo)=>{
     displayDetails.innerHTML = `
      <h1 class="font-bold text-2xl mb-6">${info.word} (<i class="fa-solid fa-microphone"></i> : ${info.pronunciation})</h1>
     <h2 class="font-medium text-[20px] mb-2.5">Meaning</h2>
-    <h2 class="hind-siliguri-medium text-[19px] mb-7">${info.meaning}</h2>
+    <h2 class="hind-siliguri-medium text-[19px] mb-7">${meaning(info.meaning)}</h2>
     <h2 class="font-semibold mb-4">Example</h2>
     <h1 class="mb-8">${info.sentence}</h1>
     <h2 class="hind-siliguri-medium text-[19px] mb-2.5">সমার্থক শব্দ গুলো</h2>
-    <a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">Enthusiastic</a>
-    <a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">excited</a>
-    <a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">keen</a>
+        ${syn(info.synonyms)}
     `
     
     showModal.showModal();
