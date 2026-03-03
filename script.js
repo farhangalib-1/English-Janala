@@ -71,16 +71,28 @@ const word = (levelNo)=>{
     const url = `https://openapi.programming-hero.com/api/word/${id}`
     fetch(url)
     .then(res=>res.json())
-    .then(infos=>console.log(infos.data)
+    .then(infos=>addModal(infos.data)
     )
-    
+
+    const addModal = (info) =>{    
     const displayDetails = document.getElementById('displaydetails')
     const showModal = document.getElementById('my_modal_1')
-    // displayDetails.innerHTML = 
+    displayDetails.innerHTML = `
+     <h1 class="font-bold text-2xl mb-6">${info.word} (<i class="fa-solid fa-microphone"></i> : ${info.pronunciation})</h1>
+    <h2 class="font-medium text-[20px] mb-2.5">Meaning</h2>
+    <h2 class="hind-siliguri-medium text-[19px] mb-7">${info.meaning}</h2>
+    <h2 class="font-semibold mb-4">Example</h2>
+    <h1 class="mb-8">${info.sentence}</h1>
+    <h2 class="hind-siliguri-medium text-[19px] mb-2.5">সমার্থক শব্দ গুলো</h2>
+    <a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">Enthusiastic</a>
+    <a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">excited</a>
+    <a class="px-5 py-1.5 bg-[#D7E4EF] rounded-sm">keen</a>
+    `
     
     showModal.showModal();
   
 }
+  }
 loadLevel();
 
 
