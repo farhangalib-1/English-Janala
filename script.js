@@ -73,13 +73,12 @@ const word = (levelNo)=>{
             </div>
             <div class="btns flex justify-between px-8 mt-6">
               <button class="btn" onclick="showModal(${word.id})"><i class="fa-solid fa-circle-info"></i></button>
-              <button class="btn"><i class="fa-solid fa-volume-high"></i></button>
+              <button class="btn" onclick="pronounceWord(${word.id})"><i class="fa-solid fa-volume-high"></i></button>
             </div>
           </div>
     `
         displayWords.appendChild(div)
     }
-
 }
 }
   const showModal = (id)=>{
@@ -105,7 +104,19 @@ const word = (levelNo)=>{
     showModal.showModal();
   
 }
-  }
+
+}
+const pronounceWord = (id)=>{
+    const url = `https://openapi.programming-hero.com/api/word/${id}`
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>{
+        const utterance = new SpeechSynthesisUtterance(data.data.word);
+        utterance.lang = "en-EN"; // English
+        window.speechSynthesis.speak(utterance);
+    })
+}
+
 loadLevel();
 
 
