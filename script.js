@@ -117,6 +117,21 @@ const pronounceWord = (id)=>{
     })
 }
 
+    document.getElementById('search-btn').addEventListener('click', () => {
+        const searchTerm = document.querySelector('input[type="search"]').value.trim().toLowerCase();
+        fetch('https://openapi.programming-hero.com/api/words/all')
+        .then(res=>res.json())
+        .then(data=>{
+            const allWord = data.data
+            const searchWord = allWord.filter(word =>
+             word.word.toLowerCase().includes(searchTerm));
+                
+                
+            displayWord(searchWord); 
+        })
+        
+    });
+
 loadLevel();
 
 
